@@ -1,33 +1,27 @@
-name: Build Zavilo APK
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="24dp">
 
-on:
-  push:
-    branches: [ main ]
-  workflow_dispatch:
+    <TextView
+        android:id="@+id/titleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:textColor="@color/black"
+        android:textSize="28sp"
+        android:textStyle="bold" />
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      
-      - name: Set up JDK 17
-        uses: actions/setup-java@v4
-        with:
-          java-version: '17'
-          distribution: 'temurin'
-          
-      - name: Make gradlew executable
-        run: chmod +x ./gradlew
-          
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v4
-        
-      - name: Build Debug APK
-        run: ./gradlew assembleDebug
-        
-      - name: Upload APK
-        uses: actions/upload-artifact@v4
-        with:
-          name: zavilo-apk
-          path: app/build/outputs/apk/debug/*.apk
+    <TextView
+        android:id="@+id/statusText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Notification-aware AI assistant"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
+</LinearLayout>
